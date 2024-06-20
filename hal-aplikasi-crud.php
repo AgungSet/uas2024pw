@@ -227,27 +227,19 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; 
-                                $SQLTampilDataJadwal = mysqli_query($koneksi, "SELECT * FROM jadwal_kuliah, dosen, mata_kuliah where jadwal_kuliah.id_dosen = dosen.id_dosen and jadwal_kuliah.id_matakuliah = mata_kuliah.id_matakuliah ORDER BY id_jadwalkuliah DESC");
+                                $SQLTampilDataJadwal = mysqli_query($koneksi, "SELECT penjualan.*, customer.nama as namacustomer FROM penjualan JOIN customer ON penjualan.idcustomer = customer.id_customer ORDER BY id DESC");
                                 while($data_jadwal = mysqli_fetch_array($SQLTampilDataJadwal)) { ?>
                             <tr style="font-size: smaller;">
                                 <td><?= $no++ ?></td>
-                                <?= $data_jadwal['inputan_pilih_customer'].'<br><b>dosen : </b>'.$data_jadwal['id customer'] ?>
-                                <hr style="margin : 0">
+                             
+                                <td><?= $data_jadwal['namacustomer']?></td>
+                                <td><?= $data_jadwal['namaproduk']?></td>
+                                <td><?= $data_jadwal['harga']?></td>
+                                <td><?= $data_jadwal['totalpesanan']?></td>
+                                <td><?= $data_jadwal['totalharga']?></td>
                                 <td>
-                                <td><?= $data_jadwal['inputan_pilih_produk'].', <br>'.$data_jadwal['namaproduk']?></td>
-                                <td>
-                                <td><?= $data_jadwal['inputan_Harga'].', <br>'.$data_jadwal['harga'] ?></td>  
-                                <td>
-                                <td><?= $data_jadwal['inputan_totalpesanan'].', <br>'.$data_jadwal['totalpesanan'] ?></td> 
-                                <td>
-                                <td><?= $data_jadwal['inputan_totalharga'].', <br>'.$data_jadwal['totalharga'] ?></td> 
-                                    <!-- Tgl. Entri (<?= date("d/M/Y", strtotime($data_jadwal['tanggal_entri'])) ?>) -->
-                                </td>
-                                
-                                <td>
-                                <td><?= $data_jadwal['inputan_pilih_produk'] ?></td>
-                                    <a style="margin: 2px;" href="hal-aplikasi-crud.php?aksi=ubah_jadwal&vid_jadwalkuliah=<?= $data_jadwal['id_jadwalkuliah'] ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a style="margin: 2px;" onclick="return confirm('Yakin hapus ?')" href="hal-aplikasi-crud.php?aksi=hapus_jadwal&vid_jadwalkuliah=<?= $data_jadwal['id_jadwalkuliah'] ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a style="margin: 2px;" href="hal-aplikasi-crud.php?aksi=ubah_penjualan&vid=<?= $data_jadwal['id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a style="margin: 2px;" onclick="return confirm('Yakin hapus ?')" href="hal-aplikasi-crud.php?aksi=hapus_penjualan&vid=<?= $data_jadwal['id'] ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>
