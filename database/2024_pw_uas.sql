@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `id_customer` int NOT NULL AUTO_INCREMENT,
   `nama` text,
   PRIMARY KEY (`id_customer`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)   ;
 
 INSERT INTO `customer` (`id_customer`, `nama`) VALUES
 	(1, 'agung'),
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `dosen` (
   `alamat_dosen` text NOT NULL,
   `foto_dosen` text NOT NULL,
   PRIMARY KEY (`id_dosen`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)  ;
 
 
 INSERT INTO `dosen` (`id_dosen`, `nidn_dosen`, `nama_dosen`, `jk_dosen`, `alamat_dosen`, `foto_dosen`) VALUES
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `jadwal_kuliah` (
   PRIMARY KEY (`id_jadwalkuliah`),
   KEY `id_mahasiswa` (`id_matakuliah`),
   KEY `id_dosen` (`id_dosen`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)  ;
 
 
 INSERT INTO `jadwal_kuliah` (`id_jadwalkuliah`, `tanggal_entri`, `hari_kuliah`, `jam_kuliah`, `tempat_kuliah`, `id_matakuliah`, `id_dosen`) VALUES
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `mata_kuliah` (
   `id_matakuliah` int NOT NULL AUTO_INCREMENT,
   `mata_kuliah` text NOT NULL,
   PRIMARY KEY (`id_matakuliah`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)  ;
 
 INSERT INTO `mata_kuliah` (`id_matakuliah`, `mata_kuliah`) VALUES
 	(7, 'giugiuui'),
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `penjualan` (
   PRIMARY KEY (`id`),
   KEY `FK_penjualan_customer` (`idcustomer`),
   CONSTRAINT `FK_penjualan_customer` FOREIGN KEY (`idcustomer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+)   ;
 
 INSERT INTO `penjualan` (`id`, `tanggal`, `namaproduk`, `harga`, `totalpesanan`, `totalharga`, `idcustomer`, `catatan`) VALUES
 	(1, '2024-06-15 18:32:00', '8', 1, 1, 1, 1, '1'),
